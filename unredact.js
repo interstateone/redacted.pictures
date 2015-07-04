@@ -90,8 +90,11 @@ function unredact(words) {
         paragraph = paragraph.concat(randomRedactedSentenceFragment());
     }
 
-    var canvas = fabric.createCanvasForNode(600, 200);
-    return wrapText(canvas, paragraph, 0, 14, 300, 20);
+    var canvas = fabric.createCanvasForNode(400, 200);
+    canvas = wrapText(canvas, paragraph, 5, 5, 300, 20);
+    canvas.insertAt(new fabric.Rect({ width: canvas.getWidth(), height: canvas.getHeight(), fill: "white" }), 0);
+
+    return canvas;
 }
 
 module.exports = { 'unredact': unredact };
