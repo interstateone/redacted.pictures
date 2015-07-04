@@ -5,12 +5,16 @@ function weightedRandom() {
 }
 
 function unredactedWord(length) {
-    var count = length
-    var word = ""
+    if (length < 0) {
+        length = 1;
+    }
+
+    var count = length;
+    var word = "";
     do {
-        word += "█"
-        count -= 1
-    } while (count >= 0)
+        word += "█";
+        count -= 1;
+    } while (count >= 0);
 
     return word;
 }
@@ -20,10 +24,10 @@ function randomRedactedWord() {
 }
 
 function randomRedactedSentenceFragment() {
-    var words = []
-    var count = 2 + Math.random() * 10
+    var words = [];
+    var count = 2 + Math.random() * 10;
     for (var index = 0; index < count; index += 1) {
-        words.push(randomRedactedWord())
+        words.push(randomRedactedWord());
     }
     return words;
 }
@@ -70,7 +74,7 @@ function wrapText(canvas, words, x, y, maxWidth, lineHeight) {
 function unredact(words) {
     // Don't kill the server
     if (words.length > 50) {
-        words.length = 50
+        words.length = 50;
     }
     
     var paragraph = randomRedactedSentenceFragment();
@@ -82,8 +86,8 @@ function unredact(words) {
             word = word.substring(0, 25);
         }
 
-        paragraph.push(word)
-        paragraph = paragraph.concat(randomRedactedSentenceFragment())
+        paragraph.push(word);
+        paragraph = paragraph.concat(randomRedactedSentenceFragment());
     }
 
     var canvas = fabric.createCanvasForNode(600, 200);

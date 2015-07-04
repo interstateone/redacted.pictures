@@ -25,7 +25,7 @@ app.get('/:words', function(req, res) {
     });
 });
 
-app.set('port', (process.env.PORT || 5000))
+app.set('port', (process.env.PORT || 5000));
 var server = app.listen(app.get('port'), function() {
     var host = server.address().address;
     var port = server.address().port;
