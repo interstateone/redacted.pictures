@@ -68,9 +68,20 @@ function wrapText(canvas, words, x, y, maxWidth, lineHeight) {
 }
 
 function unredact(words) {
+    // Don't kill the server
+    if (words.length > 50) {
+        words.length = 50
+    }
+    
     var paragraph = randomRedactedSentenceFragment();
     for (index in words) {
         var word = words[index];
+
+        // Don't kill it here either
+        if (word.length > 25) {
+            word = word.substring(0, 25);
+        }
+
         paragraph.push(word)
         paragraph = paragraph.concat(randomRedactedSentenceFragment())
     }
